@@ -1,0 +1,45 @@
+name: custom:ptc.windchill.caches
+version: "1.0.0"
+minDynatraceVersion: "1.257"
+author:
+  name: "PTC Windchill Monitoring"
+
+# NOTE: The JMX key property for cache name uses lowercase "name" (not "Name").
+# This is intentional and must be preserved exactly for correct dimension splitting.
+
+metrics:
+  - key: "ptc.windchill.caches.size"
+    metadata:
+      displayName: "Cache Size"
+      unit: Count
+      description: "Number of objects currently held in a Windchill cache"
+      dimensions:
+        - key: cache_name
+          displayName: "Cache Name"
+  - key: "ptc.windchill.caches.entry_count"
+    metadata:
+      displayName: "Cache Entry Count"
+      unit: Count
+      description: "Total number of entries that have passed through a Windchill cache"
+      dimensions:
+        - key: cache_name
+          displayName: "Cache Name"
+
+jmxRemote:
+  - group: "PTC Caches"
+    subgroups:
+      - subgroup: "Caches"
+        query: "com.ptc:name=*,wt.monitorType=Caches,wt.subsystem=Monitors,*"
+        dimensions:
+          - key: cache_name
+            value:
+              keyProperty: "name"
+        metrics:
+          - key: "ptc.windchill.caches.size"
+            value:
+              attribute: "CacheSize"
+            type: gauge
+          - key: "ptc.windchill.caches.entry_count"
+            value:
+              attribute: "CacheEntryCount"
+            type: gauge

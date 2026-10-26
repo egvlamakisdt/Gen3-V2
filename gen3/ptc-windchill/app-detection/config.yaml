@@ -1,0 +1,16 @@
+# IMPORTANT: The scope must be set to the entity ID of the "PTC Windchill" web application
+# after it has been deployed. Run the deploy command once, find the generated application
+# entity ID (format: APPLICATION-XXXXXXXXXXXXXXXX) in your Dynatrace tenant, then
+# replace APPLICATION_ENTITY_ID_PLACEHOLDER below with the real ID and re-run deploy.
+#
+# Alternatively, retrieve the entity ID via DQL after the first deploy:
+#   fetch dt.entity.application | filter entity.name == "PTC Windchill" | fields id, entity.name
+configs:
+  - id: windchill-app-detection
+    config:
+      name: "Windchill URL Detection"
+      template: windchill-detection.json
+    type:
+      settings:
+        schema: builtin:rum.web.app-detection
+        scope: "APPLICATION_ENTITY_ID_PLACEHOLDER"

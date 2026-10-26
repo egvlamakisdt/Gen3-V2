@@ -1,0 +1,45 @@
+configs:
+  - id: auto-tag-method-server
+    config:
+      name: "MethodServer"
+      template: method-server.json
+    type:
+      settings:
+        schema: builtin:tags.auto-tagging
+        scope: environment
+
+  - id: auto-tag-server-manager
+    config:
+      name: "ServerManager"
+      template: server-manager.json
+    type:
+      settings:
+        schema: builtin:tags.auto-tagging
+        scope: environment
+
+  - id: auto-tag-directory-server
+    config:
+      name: "DirectoryServer"
+      template: directory-server.json
+    type:
+      settings:
+        schema: builtin:tags.auto-tagging
+        scope: environment
+
+  - id: auto-tag-background-method-server
+    config:
+      name: "BackgroundMethodServer"
+      template: background-method-server.json
+    type:
+      settings:
+        schema: builtin:tags.auto-tagging
+        scope: environment
+
+  - id: auto-tag-ptc-scope
+    config:
+      name: "PTC"
+      template: ptc-scope.json
+    type:
+      settings:
+        schema: builtin:tags.auto-tagging
+        scope: environment

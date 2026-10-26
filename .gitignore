@@ -1,0 +1,19 @@
+﻿# Local secrets
+gen3/environments.yaml
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+*.token
+*.secret
+
+# Generated / editor noise
+.DS_Store
+Thumbs.db
+*.log
+**/dist/
+**/build/
+**/.cache/

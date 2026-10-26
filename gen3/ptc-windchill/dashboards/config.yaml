@@ -1,0 +1,108 @@
+configs:
+  - id: dash-ptc-operations
+    config:
+      name: "PTC Windchill - Operations"
+      template: ptc-operations.json
+    type:
+      document:
+        kind: dashboard
+        private: false
+
+  - id: dash-app-overview
+    config:
+      name: "M108 - Windchill Application Overview"
+      template: m108-app-overview.json
+    type:
+      document:
+        kind: dashboard
+        private: false
+
+  - id: dash-cache
+    config:
+      name: "D100 - Cache Dashboard"
+      template: d100-caches.json
+    type:
+      document:
+        kind: dashboard
+        private: false
+
+  - id: dash-workspace-ops
+    config:
+      name: "D202 - Workspace Operations"
+      template: d202-workspace-operations.json
+    type:
+      document:
+        kind: dashboard
+        private: false
+
+  - id: dash-ms-status
+    config:
+      name: "M101 - Method Server Status"
+      template: m101-ms-status.json
+    type:
+      document:
+        kind: dashboard
+        private: false
+
+  - id: dash-sm-status
+    config:
+      name: "M103 - Server Manager Status"
+      template: m103-sm-status.json
+    type:
+      document:
+        kind: dashboard
+        private: false
+
+  - id: dash-process-queues
+    config:
+      name: "M105 - Process Queues"
+      template: m105-process-queues.json
+    type:
+      document:
+        kind: dashboard
+        private: false
+
+  - id: dash-publish-queues
+    config:
+      name: "M106 - Publish Queues"
+      template: m106-publish-queues.json
+    type:
+      document:
+        kind: dashboard
+        private: false
+
+  - id: dash-schedule-queues
+    config:
+      name: "M107 - Schedule Queues"
+      template: m107-schedule-queues.json
+    type:
+      document:
+        kind: dashboard
+        private: false
+
+  - id: dash-host-health
+    config:
+      name: "M109 - HOST Health"
+      template: m109-host-health.json
+    type:
+      document:
+        kind: dashboard
+        private: false
+
+  - id: dash-jvm-health
+    config:
+      name: "M200 - JVM Health"
+      template: m200-jvm-health.json
+    type:
+      document:
+        kind: dashboard
+        private: false
+
+  - id: dash-host-windchill-monitoring
+    config:
+      name: "M201 - HOST Windchill Monitoring"
+      template: m201-host-monitoring.json
+    type:
+      document:
+        kind: dashboard
+        private: false

@@ -1,0 +1,141 @@
+{
+  "name": "PTC Windchill - Operations",
+  "type": "dashboard",
+  "content": {
+    "version": 21,
+    "variables": [],
+    "tiles": {
+      "hdr-svc": {
+        "type": "markdown",
+        "content": "## Service Performance — PTC Management Zone"
+      },
+      "svc-req": {
+        "type": "data",
+        "title": "Request Count by Custom Service",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries count(`builtin:service.requestCount.total`), by:{dt.entity.service}\n| filter in(dt.entity.service, entitySelector(\"type(SERVICE),tag(\\\"PTC\\\")\"))\n| fieldsAdd serviceName = entityName(dt.entity.service)\n| sort max(rollup(sum, value)) desc\n| limit 13",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "svc-resp": {
+        "type": "data",
+        "title": "Response Time by Custom Service",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:service.response.time`), by:{dt.entity.service}\n| filter in(dt.entity.service, entitySelector(\"type(SERVICE),tag(\\\"PTC\\\")\"))\n| fieldsAdd serviceName = entityName(dt.entity.service)\n| sort max(rollup(avg, value)) desc\n| limit 13",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "svc-err": {
+        "type": "data",
+        "title": "Error Rate by Custom Service",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:service.errors.total.rate`), by:{dt.entity.service}\n| filter in(dt.entity.service, entitySelector(\"type(SERVICE),tag(\\\"PTC\\\")\"))\n| fieldsAdd serviceName = entityName(dt.entity.service)\n| sort max(rollup(avg, value)) desc\n| limit 13",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "hdr-users": {
+        "type": "markdown",
+        "content": "## Active Users"
+      },
+      "active-users": {
+        "type": "data",
+        "title": "Active User Count (JMX)",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.active_users.count`)",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.active_users.total_count`)",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "distinct-users": {
+        "type": "data",
+        "title": "Distinct Active Users (Sessions)",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "fetch usersession\n| filter isNotNull(user.id)\n| summarize sessionCount = count(), by:{user.id}\n| sort sessionCount desc\n| limit 100",
+            "enabled": true
+          }
+        ],
+        "visualization": "table"
+      },
+      "hdr-actions": {
+        "type": "markdown",
+        "content": "## User Actions — PTC Windchill Application"
+      },
+      "user-actions": {
+        "type": "data",
+        "title": "User Actions by User",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "fetch useraction\n| filter isNotNull(user.id) and matchesPhrase(application.name, \"PTC Windchill\")\n| summarize count = count(), errors = max(request.errorCount), avgDuration = avg(duration), by:{user.id, name}\n| sort errors desc, avgDuration desc\n| limit 50",
+            "enabled": true
+          }
+        ],
+        "visualization": "table"
+      },
+      "hdr-health": {
+        "type": "markdown",
+        "content": "## Entity Health"
+      },
+      "app-health": {
+        "type": "data",
+        "title": "Application Health",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "fetch dt.entity.application\n| filter in(id, entitySelector(\"type(APPLICATION),tag(\\\"PTC\\\")\"))\n| fields entity.name, healthState",
+            "enabled": true
+          }
+        ],
+        "visualization": "table"
+      },
+      "problems": {
+        "type": "data",
+        "title": "Open Problems",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "fetch dt.davis.problems\n| filter status == \"OPEN\"\n| fields title, severity, status, startTime\n| sort startTime desc",
+            "enabled": true
+          }
+        ],
+        "visualization": "table"
+      }
+    },
+    "layouts": {
+      "hdr-svc":      {"x": 0,  "y": 0,  "w": 24, "h": 2},
+      "svc-req":      {"x": 0,  "y": 2,  "w": 8,  "h": 8},
+      "svc-resp":     {"x": 8,  "y": 2,  "w": 8,  "h": 8},
+      "svc-err":      {"x": 16, "y": 2,  "w": 8,  "h": 8},
+      "hdr-users":    {"x": 0,  "y": 10, "w": 24, "h": 2},
+      "active-users": {"x": 0,  "y": 12, "w": 12, "h": 8},
+      "distinct-users":{"x": 12,"y": 12, "w": 12, "h": 8},
+      "hdr-actions":  {"x": 0,  "y": 20, "w": 24, "h": 2},
+      "user-actions": {"x": 0,  "y": 22, "w": 24, "h": 8},
+      "hdr-health":   {"x": 0,  "y": 30, "w": 24, "h": 2},
+      "app-health":   {"x": 0,  "y": 32, "w": 12, "h": 6},
+      "problems":     {"x": 12, "y": 32, "w": 12, "h": 6}
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Delete Operation",
+  "type": "JAVA",
+  "enabled": true,
+  "rules": [
+    {
+      "revisionNumber": 1,
+      "enabled": true,
+      "classes": [
+        {
+          "name": "wt.queue.DeleteTask",
+          "match": "ENDS_WITH",
+          "methods": [
+            {
+              "name": "_run",
+              "argumentTypes": [],
+              "returnType": "wt.queue.TaskResult",
+              "visibility": ["PUBLIC", "PRIVATE", "PROTECTED", "PACKAGE_PROTECTED"],
+              "modifiers": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

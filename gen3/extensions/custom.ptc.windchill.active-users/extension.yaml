@@ -1,0 +1,32 @@
+name: custom:ptc.windchill.active-users
+version: "1.0.0"
+minDynatraceVersion: "1.257"
+author:
+  name: "PTC Windchill Monitoring"
+
+metrics:
+  - key: "ptc.windchill.active_users.count"
+    metadata:
+      displayName: "Active User Count"
+      unit: Count
+      description: "Number of currently active Windchill users (ActiveUserCount MBean attribute)"
+  - key: "ptc.windchill.active_users.total_count"
+    metadata:
+      displayName: "Total Active User Count"
+      unit: Count
+      description: "Total active Windchill user count across all servers (TotalActiveUserCount MBean attribute)"
+
+jmxRemote:
+  - group: "PTC ActiveUsers"
+    subgroups:
+      - subgroup: "ActiveUsers"
+        query: "com.ptc:Name=ActiveUsers,wt.subsystem=Monitors,*"
+        metrics:
+          - key: "ptc.windchill.active_users.count"
+            value:
+              attribute: "ActiveUserCount"
+            type: gauge
+          - key: "ptc.windchill.active_users.total_count"
+            value:
+              attribute: "TotalActiveUserCount"
+            type: gauge

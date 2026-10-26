@@ -1,0 +1,18 @@
+configs:
+  - id: calc-metric-exception-count
+    config:
+      name: "PTC Exception Count"
+      template: exception-count.json
+    type:
+      settings:
+        schema: builtin:calculated.metrics.service
+        scope: environment
+
+  - id: calc-metric-action-name-by-user
+    config:
+      name: "PTC Action Name By User"
+      template: action-name-by-user.json
+    type:
+      settings:
+        schema: builtin:calculated.metrics.service
+        scope: environment

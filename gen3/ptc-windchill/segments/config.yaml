@@ -1,0 +1,7 @@
+configs:
+  - id: ptc-segment
+    config:
+      name: "PTC Windchill"
+      template: ptc-segment.json
+    type:
+      segment: {}

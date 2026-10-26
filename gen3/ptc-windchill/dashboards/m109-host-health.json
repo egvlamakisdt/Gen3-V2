@@ -1,0 +1,149 @@
+{
+  "name": "M109 - HOST Health",
+  "type": "dashboard",
+  "content": {
+    "version": 21,
+    "variables": [],
+    "tiles": {
+      "hdr": {
+        "type": "markdown",
+        "content": "## PTC Windchill — Host Health\nHost-level infrastructure metrics filtered by Management Zone `PTC`"
+      },
+      "hdr-cpu": {
+        "type": "markdown",
+        "content": "### CPU"
+      },
+      "cpu-usage": {
+        "type": "data",
+        "title": "CPU Usage %",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:host.cpu.usage`), by:{dt.entity.host}\n| filter in(dt.entity.host, entitySelector(\"type(HOST),tag(\\\"PTC\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "cpu-system": {
+        "type": "data",
+        "title": "CPU System %",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:host.cpu.system`), by:{dt.entity.host}\n| filter in(dt.entity.host, entitySelector(\"type(HOST),tag(\\\"PTC\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "cpu-iowait": {
+        "type": "data",
+        "title": "CPU I/O Wait %",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:host.cpu.iowait`), by:{dt.entity.host}\n| filter in(dt.entity.host, entitySelector(\"type(HOST),tag(\\\"PTC\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "cpu-load": {
+        "type": "data",
+        "title": "CPU Load Average",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:host.cpu.load`), by:{dt.entity.host}\n| filter in(dt.entity.host, entitySelector(\"type(HOST),tag(\\\"PTC\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "hdr-mem": {
+        "type": "markdown",
+        "content": "### Memory"
+      },
+      "mem-usage": {
+        "type": "data",
+        "title": "Memory Used %",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:host.mem.usage`), by:{dt.entity.host}\n| filter in(dt.entity.host, entitySelector(\"type(HOST),tag(\\\"PTC\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "mem-avail": {
+        "type": "data",
+        "title": "Memory Available %",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:host.mem.availPct`), by:{dt.entity.host}\n| filter in(dt.entity.host, entitySelector(\"type(HOST),tag(\\\"PTC\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "hdr-disk": {
+        "type": "markdown",
+        "content": "### Disk"
+      },
+      "disk-used": {
+        "type": "data",
+        "title": "Disk Used %",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:host.disk.usedPct`), by:{dt.entity.host}\n| filter in(dt.entity.host, entitySelector(\"type(HOST),tag(\\\"PTC\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "disk-free": {
+        "type": "data",
+        "title": "Disk Free (bytes)",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:host.disk.free`), by:{dt.entity.host}\n| filter in(dt.entity.host, entitySelector(\"type(HOST),tag(\\\"PTC\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "host-table": {
+        "type": "data",
+        "title": "Host List — PTC MZ",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "fetch dt.entity.host\n| filter in(id, entitySelector(\"type(HOST),tag(\\\"PTC\\\")\"))\n| fields entity.name, healthState\n| sort healthState",
+            "enabled": true
+          }
+        ],
+        "visualization": "table"
+      }
+    },
+    "layouts": {
+      "hdr":        {"x": 0,  "y": 0,  "w": 24, "h": 2},
+      "hdr-cpu":    {"x": 0,  "y": 2,  "w": 24, "h": 2},
+      "cpu-usage":  {"x": 0,  "y": 4,  "w": 6,  "h": 8},
+      "cpu-system": {"x": 6,  "y": 4,  "w": 6,  "h": 8},
+      "cpu-iowait": {"x": 12, "y": 4,  "w": 6,  "h": 8},
+      "cpu-load":   {"x": 18, "y": 4,  "w": 6,  "h": 8},
+      "hdr-mem":    {"x": 0,  "y": 12, "w": 24, "h": 2},
+      "mem-usage":  {"x": 0,  "y": 14, "w": 12, "h": 8},
+      "mem-avail":  {"x": 12, "y": 14, "w": 12, "h": 8},
+      "hdr-disk":   {"x": 0,  "y": 22, "w": 24, "h": 2},
+      "disk-used":  {"x": 0,  "y": 24, "w": 12, "h": 8},
+      "disk-free":  {"x": 12, "y": 24, "w": 12, "h": 8},
+      "host-table": {"x": 0,  "y": 32, "w": 24, "h": 8}
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "Copy Operation",
+  "type": "JAVA",
+  "enabled": true,
+  "rules": [
+    {
+      "revisionNumber": 1,
+      "enabled": true,
+      "classes": [
+        {
+          "name": "com.ptc.netmarkets.ui.beans.NmObjectCommands",
+          "match": "ENDS_WITH",
+          "methods": [
+            {
+              "name": "copy",
+              "argumentTypes": [],
+              "returnType": null,
+              "visibility": ["PUBLIC"],
+              "modifiers": []
+            },
+            {
+              "name": "list_copy",
+              "argumentTypes": [],
+              "returnType": null,
+              "visibility": ["PUBLIC"],
+              "modifiers": []
+            }
+          ]
+        },
+        {
+          "name": "wt.csm.server.StandardNmObjectService",
+          "match": "ENDS_WITH",
+          "methods": [
+            {
+              "name": "getPSPart",
+              "argumentTypes": [],
+              "returnType": null,
+              "visibility": ["PUBLIC"],
+              "modifiers": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

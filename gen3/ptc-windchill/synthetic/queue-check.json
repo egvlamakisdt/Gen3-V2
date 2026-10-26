@@ -1,0 +1,90 @@
+{
+  "name": "Windchill Queue Check",
+  "frequencyMin": 60,
+  "enabled": false,
+  "type": "BROWSER",
+  "script": {
+    "type": "clickpath",
+    "version": "1.0",
+    "configuration": {
+      "device": {
+        "deviceName": "Desktop",
+        "orientation": "landscape"
+      },
+      "disableWebSecurity": false
+    },
+    "events": [
+      {
+        "type": "navigate",
+        "description": "Loading queue management page",
+        "url": "WINDCHILL_BASE_URL/Windchill/app/#ptc1/comp/queue.table",
+        "wait": {
+          "waitFor": "page_complete"
+        }
+      },
+      {
+        "type": "click",
+        "description": "click on \"Severe/Failed Entries\"",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "div:contains(\"Severe/Failed Entries\"):eq(23)"
+            }
+          ]
+        },
+        "button": 0
+      },
+      {
+        "type": "click",
+        "description": "click on \"Severe/Failed Entries\" (2)",
+        "validate": [
+          {
+            "type": "text_match",
+            "match": "Stopped",
+            "isRegex": false,
+            "failIfFound": true
+          }
+        ],
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "div:contains(\"Severe/Failed Entries\"):eq(23)"
+            }
+          ]
+        },
+        "button": 0
+      },
+      {
+        "type": "javascript",
+        "description": "Validate queues — fail if any queue has >= 10 failed entries",
+        "javaScript": "var table = document.getElementsByClassName(\"x-grid3-body\")[0];\nvar queues = [];\nvar fail = 0;\nvar threshold = 10;\nvar tableChild = table.childElements();\nfor (var i = 0; i < tableChild.length; i++) {\n    try {\n        var name = tableChild[i].getElementsByTagName(\"td\")[1].getElementsByTagName(\"div\")[0].innerHTML;\n        var count = parseInt(tableChild[i].getElementsByTagName(\"td\")[9].getElementsByTagName(\"div\")[0].innerHTML.replace(/,/g, ''), 10);\n        if (count >= threshold) {\n            queues.push(name);\n            fail = 1;\n        }\n    } catch (err) {\n        if (fail === 1) {\n            api.fail(\"Queues with Failed Entries: \" + queues.join(\", \"));\n        } else {\n            api.finish();\n        }\n    }\n}"
+      }
+    ]
+  },
+  "locations": [
+    "LOCATION_ENTITY_ID"
+  ],
+  "anomalyDetection": {
+    "outageHandling": {
+      "globalOutage": true,
+      "localOutage": false,
+      "localOutagePolicy": {
+        "affectedLocations": null,
+        "consecutiveRuns": null
+      },
+      "retryOnError": true
+    },
+    "loadingTimeThresholds": {
+      "enabled": false,
+      "thresholds": []
+    }
+  },
+  "tags": [],
+  "managementZones": [],
+  "keyPerformanceMetrics": {
+    "loadActionKpm": "VISUALLY_COMPLETE",
+    "xhrActionKpm": "VISUALLY_COMPLETE"
+  }
+}

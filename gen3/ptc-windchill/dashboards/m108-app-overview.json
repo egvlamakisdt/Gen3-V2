@@ -1,0 +1,105 @@
+{
+  "name": "M108 - Windchill Application Overview",
+  "type": "dashboard",
+  "content": {
+    "version": 21,
+    "variables": [],
+    "tiles": {
+      "hdr-health": {
+        "type": "markdown",
+        "content": "## Service & Application Health"
+      },
+      "svc-health": {
+        "type": "data",
+        "title": "Service Health — PTC MZ",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "fetch dt.entity.service\n| filter in(id, entitySelector(\"type(SERVICE),tag(\\\"PTC\\\")\"))\n| fields entity.name, healthState\n| sort healthState",
+            "enabled": true
+          }
+        ],
+        "visualization": "table"
+      },
+      "app-health": {
+        "type": "data",
+        "title": "Application Health",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "fetch dt.entity.application\n| filter in(id, entitySelector(\"type(APPLICATION),tag(\\\"PTC\\\")\"))\n| fields entity.name, healthState",
+            "enabled": true
+          }
+        ],
+        "visualization": "table"
+      },
+      "key-resp": {
+        "type": "data",
+        "title": "Server-Side Key Request Response Time",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:service.keyRequest.response.server`), by:{dt.entity.service}\n| filter in(dt.entity.service, entitySelector(\"type(SERVICE),tag(\\\"PTC\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "hdr-jvm": {
+        "type": "markdown",
+        "content": "## JVM Memory"
+      },
+      "jvm-pool": {
+        "type": "data",
+        "title": "JVM Heap Memory Pool Committed (by pool name)",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:tech.jvm.memory.pool.committed`), by:{poolname}",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "jvm-total": {
+        "type": "data",
+        "title": "JVM Runtime Total Memory (by process)",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:tech.jvm.memory.runtime.total`), by:{dt.entity.process_group_instance}\n| filter in(dt.entity.process_group_instance, entitySelector(\"type(PROCESS_GROUP_INSTANCE),tag(\\\"PTC\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "hdr-exc": {
+        "type": "markdown",
+        "content": "## Exceptions"
+      },
+      "exceptions": {
+        "type": "data",
+        "title": "Exception Count by Class (calc:service.ptc.exception_count)",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`calc:service.ptc.exception_count`), by:{Dimension}\n| sort max(rollup(avg, value)) desc\n| limit 20",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      }
+    },
+    "layouts": {
+      "hdr-health": {"x": 0,  "y": 0,  "w": 24, "h": 2},
+      "svc-health": {"x": 0,  "y": 2,  "w": 12, "h": 8},
+      "app-health": {"x": 12, "y": 2,  "w": 12, "h": 8},
+      "key-resp":   {"x": 0,  "y": 10, "w": 24, "h": 8},
+      "hdr-jvm":    {"x": 0,  "y": 18, "w": 24, "h": 2},
+      "jvm-pool":   {"x": 0,  "y": 20, "w": 12, "h": 8},
+      "jvm-total":  {"x": 12, "y": 20, "w": 12, "h": 8},
+      "hdr-exc":    {"x": 0,  "y": 28, "w": 24, "h": 2},
+      "exceptions": {"x": 0,  "y": 30, "w": 24, "h": 8}
+    }
+  }
+}

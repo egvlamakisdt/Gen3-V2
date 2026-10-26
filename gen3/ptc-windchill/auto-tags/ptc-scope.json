@@ -1,0 +1,135 @@
+{
+  "name": "PTC",
+  "description": "Broad scope tag applied to all PTC Windchill process groups, their services and hosts, and the PTC Windchill web application. Replaces the Gen2 Management Zone scope filter.",
+  "rules": [
+    {
+      "type": "ME",
+      "enabled": true,
+      "valueFormat": null,
+      "propagationTypes": [
+        "PROCESS_GROUP_TO_SERVICE",
+        "PROCESS_GROUP_TO_HOST"
+      ],
+      "conditions": [
+        {
+          "key": {
+            "attribute": "PROCESS_PREDEFINED_METADATA",
+            "dynamicKey": {
+              "key": "JAVA_MAIN_CLASS",
+              "source": "PROCESS_PREDEFINED_METADATA_KEY"
+            },
+            "type": "PROCESS_PREDEFINED_METADATA_KEY"
+          },
+          "comparisonInfo": {
+            "type": "STRING",
+            "operator": "CONTAINS",
+            "value": "MethodServerMain",
+            "negate": false,
+            "caseSensitive": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "ME",
+      "enabled": true,
+      "valueFormat": null,
+      "propagationTypes": [
+        "PROCESS_GROUP_TO_SERVICE",
+        "PROCESS_GROUP_TO_HOST"
+      ],
+      "conditions": [
+        {
+          "key": {
+            "attribute": "PROCESS_PREDEFINED_METADATA",
+            "dynamicKey": {
+              "key": "JAVA_MAIN_CLASS",
+              "source": "PROCESS_PREDEFINED_METADATA_KEY"
+            },
+            "type": "PROCESS_PREDEFINED_METADATA_KEY"
+          },
+          "comparisonInfo": {
+            "type": "STRING",
+            "operator": "CONTAINS",
+            "value": "ServerManagerMain",
+            "negate": false,
+            "caseSensitive": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "ME",
+      "enabled": true,
+      "valueFormat": null,
+      "propagationTypes": [
+        "PROCESS_GROUP_TO_SERVICE",
+        "PROCESS_GROUP_TO_HOST"
+      ],
+      "conditions": [
+        {
+          "key": {
+            "attribute": "PROCESS_PREDEFINED_METADATA",
+            "dynamicKey": {
+              "key": "JAVA_MAIN_CLASS",
+              "source": "PROCESS_PREDEFINED_METADATA_KEY"
+            },
+            "type": "PROCESS_PREDEFINED_METADATA_KEY"
+          },
+          "comparisonInfo": {
+            "type": "STRING",
+            "operator": "CONTAINS",
+            "value": "DirectoryServerMain",
+            "negate": false,
+            "caseSensitive": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "ME",
+      "enabled": true,
+      "valueFormat": null,
+      "propagationTypes": [
+        "PROCESS_GROUP_TO_SERVICE",
+        "PROCESS_GROUP_TO_HOST"
+      ],
+      "conditions": [
+        {
+          "key": {
+            "attribute": "PROCESS_COMMAND_LINE_ARGS",
+            "type": "STATIC"
+          },
+          "comparisonInfo": {
+            "type": "STRING",
+            "operator": "CONTAINS",
+            "value": "BackgroundMethodServer",
+            "negate": false,
+            "caseSensitive": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "ME",
+      "enabled": true,
+      "valueFormat": null,
+      "propagationTypes": [],
+      "conditions": [
+        {
+          "key": {
+            "attribute": "WEB_APPLICATION_NAME",
+            "type": "STATIC"
+          },
+          "comparisonInfo": {
+            "type": "STRING",
+            "operator": "EQUALS",
+            "value": "PTC Windchill",
+            "negate": false,
+            "caseSensitive": true
+          }
+        }
+      ]
+    }
+  ]
+}

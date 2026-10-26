@@ -1,0 +1,136 @@
+{
+  "name": "M201 - HOST Windchill Monitoring",
+  "type": "dashboard",
+  "content": {
+    "version": 21,
+    "variables": [],
+    "tiles": {
+      "hdr": {
+        "type": "markdown",
+        "content": "## PTC Windchill — Host & Application Monitoring\nCombined view: user activity, entity health, and infrastructure status"
+      },
+      "hdr-rum": {
+        "type": "markdown",
+        "content": "### Real User Monitoring"
+      },
+      "user-action-count": {
+        "type": "data",
+        "title": "User Action Count (PTC Windchill App)",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries count(`builtin:apps.web.action.count.load`), by:{dt.entity.application}\n| filter in(dt.entity.application, entitySelector(\"type(APPLICATION),tag(\\\"PTC\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "user-sessions": {
+        "type": "data",
+        "title": "User Session Count",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "fetch usersession\n| summarize sessionCount = count(), distinctUsers = countDistinct(user.id), by:{bin(timestamp, 1h)}\n| sort timestamp desc",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "error-rate": {
+        "type": "data",
+        "title": "Application Error Rate",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:apps.web.action.errorCount`), by:{dt.entity.application}\n| filter in(dt.entity.application, entitySelector(\"type(APPLICATION),tag(\\\"PTC\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "hdr-health": {
+        "type": "markdown",
+        "content": "### Entity Health"
+      },
+      "svc-health": {
+        "type": "data",
+        "title": "Service Health — PTC MZ",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "fetch dt.entity.service\n| filter in(id, entitySelector(\"type(SERVICE),tag(\\\"PTC\\\")\"))\n| fields entity.name, healthState\n| sort healthState",
+            "enabled": true
+          }
+        ],
+        "visualization": "table"
+      },
+      "host-health": {
+        "type": "data",
+        "title": "Host Health — PTC MZ",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "fetch dt.entity.host\n| filter in(id, entitySelector(\"type(HOST),tag(\\\"PTC\\\")\"))\n| fields entity.name, healthState\n| sort healthState",
+            "enabled": true
+          }
+        ],
+        "visualization": "table"
+      },
+      "hdr-infra": {
+        "type": "markdown",
+        "content": "### Infrastructure — CPU & Memory"
+      },
+      "host-cpu": {
+        "type": "data",
+        "title": "Host CPU Usage %",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:host.cpu.usage`), by:{dt.entity.host}\n| filter in(dt.entity.host, entitySelector(\"type(HOST),tag(\\\"PTC\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "host-mem": {
+        "type": "data",
+        "title": "Host Memory Used %",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:host.mem.usage`), by:{dt.entity.host}\n| filter in(dt.entity.host, entitySelector(\"type(HOST),tag(\\\"PTC\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "problems": {
+        "type": "data",
+        "title": "Open Problems",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "fetch dt.davis.problems\n| filter status == \"OPEN\"\n| fields title, severity, status, startTime\n| sort startTime desc",
+            "enabled": true
+          }
+        ],
+        "visualization": "table"
+      }
+    },
+    "layouts": {
+      "hdr":              {"x": 0,  "y": 0,  "w": 24, "h": 2},
+      "hdr-rum":          {"x": 0,  "y": 2,  "w": 24, "h": 2},
+      "user-action-count":{"x": 0,  "y": 4,  "w": 8,  "h": 8},
+      "user-sessions":    {"x": 8,  "y": 4,  "w": 8,  "h": 8},
+      "error-rate":       {"x": 16, "y": 4,  "w": 8,  "h": 8},
+      "hdr-health":       {"x": 0,  "y": 12, "w": 24, "h": 2},
+      "svc-health":       {"x": 0,  "y": 14, "w": 12, "h": 8},
+      "host-health":      {"x": 12, "y": 14, "w": 12, "h": 8},
+      "hdr-infra":        {"x": 0,  "y": 22, "w": 24, "h": 2},
+      "host-cpu":         {"x": 0,  "y": 24, "w": 12, "h": 8},
+      "host-mem":         {"x": 12, "y": 24, "w": 12, "h": 8},
+      "problems":         {"x": 0,  "y": 32, "w": 24, "h": 8}
+    }
+  }
+}

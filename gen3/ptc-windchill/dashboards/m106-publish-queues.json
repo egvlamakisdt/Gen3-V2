@@ -1,0 +1,224 @@
+{
+  "name": "M106 - Publish Queues",
+  "type": "dashboard",
+  "content": {
+    "version": 21,
+    "variables": [],
+    "tiles": {
+      "hdr": {
+        "type": "markdown",
+        "content": "## PTC Windchill — Publisher Queues\nMetrics: `ext:ptc.windchill.queues.*` — Total Entries, Waiting/Ready Entries, Max Exec Time (seconds)"
+      },
+      "pq1": {
+        "type": "data",
+        "title": "PublisherQueue1",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueue1\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueue1\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"PublisherQueue1\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "pq2": {
+        "type": "data",
+        "title": "PublisherQueueCLASH1",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueueCLASH1\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueueCLASH1\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"PublisherQueueCLASH1\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "pq3": {
+        "type": "data",
+        "title": "PublisherQueueCLASHH",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueueCLASHH\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueueCLASHH\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"PublisherQueueCLASHH\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "pq4": {
+        "type": "data",
+        "title": "PublisherQueueCLASHL",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueueCLASHL\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueueCLASHL\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"PublisherQueueCLASHL\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "pq5": {
+        "type": "data",
+        "title": "PublisherQueueCLASHM",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueueCLASHM\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueueCLASHM\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"PublisherQueueCLASHM\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "pq6": {
+        "type": "data",
+        "title": "PublisherQueuePRINTL",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueuePRINTL\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueuePRINTL\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"PublisherQueuePRINTL\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "pq7": {
+        "type": "data",
+        "title": "PublisherQueuePRINT1",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueuePRINT1\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueuePRINT1\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"PublisherQueuePRINT1\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "pq8": {
+        "type": "data",
+        "title": "PublisherQueuePRINTH",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueuePRINTH\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueuePRINTH\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"PublisherQueuePRINTH\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "pq9": {
+        "type": "data",
+        "title": "PublisherQueuePRINTM",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueuePRINTM\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"PublisherQueuePRINTM\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"PublisherQueuePRINTM\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      }
+    },
+    "layouts": {
+      "hdr": {"x": 0,  "y": 0,  "w": 24, "h": 2},
+      "pq1": {"x": 0,  "y": 2,  "w": 8,  "h": 8},
+      "pq2": {"x": 8,  "y": 2,  "w": 8,  "h": 8},
+      "pq3": {"x": 16, "y": 2,  "w": 8,  "h": 8},
+      "pq4": {"x": 0,  "y": 10, "w": 8,  "h": 8},
+      "pq5": {"x": 8,  "y": 10, "w": 8,  "h": 8},
+      "pq6": {"x": 16, "y": 10, "w": 8,  "h": 8},
+      "pq7": {"x": 0,  "y": 18, "w": 8,  "h": 8},
+      "pq8": {"x": 8,  "y": 18, "w": 8,  "h": 8},
+      "pq9": {"x": 16, "y": 18, "w": 8,  "h": 8}
+    }
+  }
+}

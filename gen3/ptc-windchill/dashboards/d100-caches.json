@@ -1,0 +1,87 @@
+{
+  "name": "D100 - Cache Dashboard",
+  "type": "dashboard",
+  "content": {
+    "version": 21,
+    "variables": [],
+    "tiles": {
+      "hdr": {
+        "type": "markdown",
+        "content": "## PTC Windchill Cache Metrics\nDimension key: `cache_name` — filtered by individual cache names below."
+      },
+      "all-entry-count": {
+        "type": "data",
+        "title": "All Caches — Entry Count",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.caches.entry_count`), by:{cache_name}\n| sort max(rollup(avg, value)) desc\n| limit 20",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "all-size": {
+        "type": "data",
+        "title": "All Caches — Size",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.caches.size`), by:{cache_name}\n| sort max(rollup(avg, value)) desc\n| limit 20",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "hdr-key": {
+        "type": "markdown",
+        "content": "## Key Caches (Individual Views)"
+      },
+      "active-folder-entry": {
+        "type": "data",
+        "title": "ActiveFolderCache — Entry Count",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.caches.entry_count`), by:{cache_name}\n| filter cache_name == \"wt.fv.StandardFvService$ActiveFolderCache\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "active-folder-size": {
+        "type": "data",
+        "title": "ActiveFolderCache — Size",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.caches.size`), by:{cache_name}\n| filter cache_name == \"wt.fv.StandardFvService$ActiveFolderCache\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "cache-table": {
+        "type": "data",
+        "title": "Cache Sizes — Current Snapshot",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries max(`ext:ptc.windchill.caches.size`), by:{cache_name}\n| fieldsAdd lastValue = rollup(last, value)\n| fields cache_name, lastValue\n| sort lastValue desc",
+            "enabled": true
+          }
+        ],
+        "visualization": "table"
+      }
+    },
+    "layouts": {
+      "hdr":               {"x": 0,  "y": 0,  "w": 24, "h": 2},
+      "all-entry-count":   {"x": 0,  "y": 2,  "w": 12, "h": 8},
+      "all-size":          {"x": 12, "y": 2,  "w": 12, "h": 8},
+      "hdr-key":           {"x": 0,  "y": 10, "w": 24, "h": 2},
+      "active-folder-entry":{"x": 0, "y": 12, "w": 12, "h": 8},
+      "active-folder-size": {"x": 12,"y": 12, "w": 12, "h": 8},
+      "cache-table":       {"x": 0,  "y": 20, "w": 24, "h": 8}
+    }
+  }
+}

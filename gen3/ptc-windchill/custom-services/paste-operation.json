@@ -1,0 +1,26 @@
+{
+  "name": "Paste Operation",
+  "type": "JAVA",
+  "enabled": true,
+  "rules": [
+    {
+      "revisionNumber": 1,
+      "enabled": true,
+      "classes": [
+        {
+          "name": "com.ptc.windchill.enterprise.wip.PasteFormProcessor",
+          "match": "ENDS_WITH",
+          "methods": [
+            {
+              "name": "doOperation",
+              "argumentTypes": [],
+              "returnType": null,
+              "visibility": ["PUBLIC"],
+              "modifiers": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "ActionName",
+  "enabled": true,
+  "skipPersonalDataMasking": false,
+  "dataType": "STRING",
+  "aggregation": "FIRST",
+  "normalization": "ORIGINAL",
+  "confidential": false,
+  "dataSources": [
+    {
+      "enabled": true,
+      "source": "METHOD_PARAM",
+      "capturingAndStorageLocation": "CAPTURE_AND_STORE_ON_SERVER",
+      "parameterIndex": 1,
+      "methodCapture": "METHOD_CALL_ARGUMENT_TO_STRING",
+      "valueProcessing": {
+        "extractSubstring": {
+          "delimiter": "com.ptc.windchill.enterprise.wip.",
+          "position": "AFTER",
+          "endDelimiter": "ObjectFormProcessor"
+        }
+      },
+      "methods": [
+        {
+          "fileNamePath": "com/ptc/windchill/enterprise/action",
+          "className": "com.ptc.windchill.enterprise.action.DefaultFormProcessorController",
+          "methodName": "execute",
+          "visibility": "PUBLIC",
+          "argumentTypes": [],
+          "returnType": null
+        }
+      ]
+    },
+    {
+      "enabled": true,
+      "source": "QUERY_PARAMETER",
+      "capturingAndStorageLocation": "CAPTURE_AND_STORE_ON_SERVER",
+      "parameterName": "actionName"
+    }
+  ]
+}

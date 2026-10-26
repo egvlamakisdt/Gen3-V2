@@ -1,0 +1,27 @@
+{
+  "name": "PTC Windchill",
+  "description": "Segment covering all PTC Windchill monitored entities: Method Servers, Server Manager, Directory Server, web application, and synthetic monitors.",
+  "isDefault": false,
+  "includes": [
+    {
+      "filter": "type(SERVICE),tag(\"PTC\")",
+      "dataObject": "entities"
+    },
+    {
+      "filter": "type(PROCESS_GROUP_INSTANCE),tag(\"PTC\")",
+      "dataObject": "entities"
+    },
+    {
+      "filter": "type(HOST),tag(\"PTC\")",
+      "dataObject": "entities"
+    },
+    {
+      "filter": "type(APPLICATION),tag(\"PTC\")",
+      "dataObject": "entities"
+    },
+    {
+      "filter": "type(SYNTHETIC_TEST),entityNameContains(\"Windchill\")",
+      "dataObject": "entities"
+    }
+  ]
+}

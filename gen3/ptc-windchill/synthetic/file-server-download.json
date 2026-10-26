@@ -1,0 +1,97 @@
+{
+  "name": "Windchill File Server Download Check",
+  "frequencyMin": 60,
+  "enabled": false,
+  "type": "BROWSER",
+  "script": {
+    "type": "clickpath",
+    "version": "1.0",
+    "configuration": {
+      "device": {
+        "deviceName": "Desktop",
+        "orientation": "landscape"
+      },
+      "disableWebSecurity": false
+    },
+    "events": [
+      {
+        "type": "navigate",
+        "description": "Load document page",
+        "url": "WINDCHILL_DOCUMENT_URL_PLACEHOLDER",
+        "wait": {
+          "waitFor": "page_complete"
+        }
+      },
+      {
+        "type": "click",
+        "description": "Click download link",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#dataStoreGeneral table tbody tr:nth-child(3) td:nth-child(3) a:nth-child(3) img"
+            },
+            {
+              "type": "css",
+              "value": "#dataStoreGeneral table.attributePanel-group-panel tbody tr td.attributePanel-value a img:eq(1)"
+            }
+          ]
+        },
+        "button": 0,
+        "wait": {
+          "waitFor": "page_complete"
+        }
+      },
+      {
+        "type": "javascript",
+        "description": "Check for secondary click needed",
+        "javaScript": "var target1 = document.getElementById(\"dataStoreGeneral\");\nif (target1 !== null) {\n    api.info(\"--> found datastore\");\n} else {\n    api.info(\"--> not found datastore\");\n    api.skipNextSyntheticEvent();\n}"
+      },
+      {
+        "type": "click",
+        "description": "Click download link (second attempt if needed)",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#dataStoreGeneral table tbody tr:nth-child(3) td:nth-child(3) a:nth-child(3) img"
+            }
+          ]
+        },
+        "button": 0,
+        "wait": {
+          "waitFor": "page_complete"
+        }
+      },
+      {
+        "type": "javascript",
+        "description": "Validate downloaded from replica server — replace REPLICA_HOSTNAME with your replica domain",
+        "javaScript": "var replica = \"REPLICA_HOSTNAME_PLACEHOLDER\";\nif (replica === window.location.host) {\n    api.finish();\n} else {\n    api.fail(\"Didn't download from replica server. Got: \" + window.location.host);\n}"
+      }
+    ]
+  },
+  "locations": [
+    "LOCATION_ENTITY_ID"
+  ],
+  "anomalyDetection": {
+    "outageHandling": {
+      "globalOutage": true,
+      "localOutage": false,
+      "localOutagePolicy": {
+        "affectedLocations": null,
+        "consecutiveRuns": null
+      },
+      "retryOnError": true
+    },
+    "loadingTimeThresholds": {
+      "enabled": false,
+      "thresholds": []
+    }
+  },
+  "tags": [],
+  "managementZones": [],
+  "keyPerformanceMetrics": {
+    "loadActionKpm": "VISUALLY_COMPLETE",
+    "xhrActionKpm": "VISUALLY_COMPLETE"
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "name": "M105 - Process Queues",
+  "type": "dashboard",
+  "content": {
+    "version": 21,
+    "variables": [],
+    "tiles": {
+      "hdr": {
+        "type": "markdown",
+        "content": "## PTC Windchill — Process Queues\nMetrics: `ext:ptc.windchill.queues.*` — Total Entries, Waiting/Ready Entries, Max Exec Time (seconds)"
+      },
+      "q1-wfuser": {
+        "type": "data",
+        "title": "WfUserWorkQueue",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"WfUserWorkQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"WfUserWorkQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"WfUserWorkQueue\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "q2-wfprop": {
+        "type": "data",
+        "title": "WfPropagationQueue",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"WfPropagationQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"WfPropagationQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"WfPropagationQueue\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "q3-delete": {
+        "type": "data",
+        "title": "DeleteCompletedWorkItemsQueue",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"DeleteCompletedWorkItemsQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"DeleteCompletedWorkItemsQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"DeleteCompletedWorkItemsQueue\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "q4-dto": {
+        "type": "data",
+        "title": "DTODeliverablesQueue",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"DTODeliverablesQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"DTODeliverablesQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"DTODeliverablesQueue\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "q5-dtoff": {
+        "type": "data",
+        "title": "DTOOffPeakQueue",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"DTOOffPeakQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"DTOOffPeakQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"DTOOffPeakQueue\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "q6-router": {
+        "type": "data",
+        "title": "wt.router.1.1",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"wt.router.1.1\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"wt.router.1.1\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"wt.router.1.1\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "q7-forum": {
+        "type": "data",
+        "title": "forumEventPropogationQueue",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"forumEventPropogationQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"forumEventPropogationQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"forumEventPropogationQueue\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "q8-notif": {
+        "type": "data",
+        "title": "NotificationQueue",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"NotificationQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"NotificationQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"NotificationQueue\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "q9-sched": {
+        "type": "data",
+        "title": "CtScheduleQueue",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"CtScheduleQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"CtScheduleQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"CtScheduleQueue\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      }
+    },
+    "layouts": {
+      "hdr":      {"x": 0,  "y": 0,  "w": 24, "h": 2},
+      "q1-wfuser":{"x": 0,  "y": 2,  "w": 8,  "h": 8},
+      "q2-wfprop":{"x": 8,  "y": 2,  "w": 8,  "h": 8},
+      "q3-delete":{"x": 16, "y": 2,  "w": 8,  "h": 8},
+      "q4-dto":   {"x": 0,  "y": 10, "w": 8,  "h": 8},
+      "q5-dtoff": {"x": 8,  "y": 10, "w": 8,  "h": 8},
+      "q6-router":{"x": 16, "y": 10, "w": 8,  "h": 8},
+      "q7-forum": {"x": 0,  "y": 18, "w": 8,  "h": 8},
+      "q8-notif": {"x": 8,  "y": 18, "w": 8,  "h": 8},
+      "q9-sched": {"x": 16, "y": 18, "w": 8,  "h": 8}
+    }
+  }
+}

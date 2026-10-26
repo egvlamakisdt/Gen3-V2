@@ -1,0 +1,33 @@
+{
+  "name": "WCLoginBean",
+  "type": "JAVA",
+  "enabled": true,
+  "rules": [
+    {
+      "revisionNumber": 1,
+      "enabled": true,
+      "classes": [
+        {
+          "name": "com.ptc.netmarkets.util.beans.NmLoginBean",
+          "match": "ENDS_WITH",
+          "methods": [
+            {
+              "name": "getRemoteUser",
+              "argumentTypes": [],
+              "returnType": null,
+              "visibility": ["PUBLIC"],
+              "modifiers": []
+            },
+            {
+              "name": "<init>",
+              "argumentTypes": [],
+              "returnType": null,
+              "visibility": ["PUBLIC"],
+              "modifiers": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

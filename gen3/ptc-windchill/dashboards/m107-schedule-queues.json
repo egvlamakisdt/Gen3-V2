@@ -1,0 +1,99 @@
+{
+  "name": "M107 - Schedule Queues",
+  "type": "dashboard",
+  "content": {
+    "version": 21,
+    "variables": [],
+    "tiles": {
+      "hdr": {
+        "type": "markdown",
+        "content": "## PTC Windchill — Schedule Queues\nMetrics: `ext:ptc.windchill.queues.*` — Total Entries, Waiting/Ready Entries, Max Exec Time (seconds)"
+      },
+      "sq1": {
+        "type": "data",
+        "title": "WfScheduleQueue",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"WfScheduleQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"WfScheduleQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"WfScheduleQueue\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "sq2": {
+        "type": "data",
+        "title": "RevaultingQueue",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"RevaultingQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"RevaultingQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"RevaultingQueue\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "sq3": {
+        "type": "data",
+        "title": "commonScheduleQueue",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter queue_name == \"commonScheduleQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.waiting_ready_entries`), by:{queue_name}\n| filter queue_name == \"commonScheduleQueue\"",
+            "enabled": true
+          },
+          {
+            "id": "C",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.max_exec_time_seconds`), by:{queue_name}\n| filter queue_name == \"commonScheduleQueue\"",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "all-queues": {
+        "type": "data",
+        "title": "All Schedule Queues — Total Entries (Combined)",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`ext:ptc.windchill.queues.total_entries`), by:{queue_name}\n| filter in(queue_name, array(\"WfScheduleQueue\", \"RevaultingQueue\", \"commonScheduleQueue\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      }
+    },
+    "layouts": {
+      "hdr":       {"x": 0,  "y": 0,  "w": 24, "h": 2},
+      "sq1":       {"x": 0,  "y": 2,  "w": 8,  "h": 8},
+      "sq2":       {"x": 8,  "y": 2,  "w": 8,  "h": 8},
+      "sq3":       {"x": 16, "y": 2,  "w": 8,  "h": 8},
+      "all-queues":{"x": 0,  "y": 10, "w": 24, "h": 8}
+    }
+  }
+}

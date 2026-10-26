@@ -1,0 +1,45 @@
+{
+  "name": "GetRemoteUser",
+  "enabled": true,
+  "skipPersonalDataMasking": true,
+  "dataType": "STRING",
+  "aggregation": "FIRST",
+  "normalization": "ORIGINAL",
+  "confidential": false,
+  "dataSources": [
+    {
+      "enabled": true,
+      "source": "METHOD_PARAM",
+      "capturingAndStorageLocation": "CAPTURE_AND_STORE_ON_SERVER",
+      "parameterIndex": 0,
+      "methodCapture": "METHOD_CALL_ARGUMENT_TO_STRING",
+      "methods": [
+        {
+          "fileNamePath": "wt/servlet",
+          "className": "wt.servlet.HttpServletRequestWrapper",
+          "methodName": "getRemoteUser",
+          "visibility": "PUBLIC",
+          "argumentTypes": [],
+          "returnType": null
+        }
+      ]
+    },
+    {
+      "enabled": true,
+      "source": "METHOD_PARAM",
+      "capturingAndStorageLocation": "CAPTURE_AND_STORE_ON_SERVER",
+      "parameterIndex": 0,
+      "methodCapture": "METHOD_CALL_ARGUMENT_TO_STRING",
+      "methods": [
+        {
+          "fileNamePath": "com/ptc/netmarkets/util/beans",
+          "className": "com.ptc.netmarkets.util.beans.NmLoginBean",
+          "methodName": "getRemoteUser",
+          "visibility": "PUBLIC",
+          "argumentTypes": [],
+          "returnType": null
+        }
+      ]
+    }
+  ]
+}

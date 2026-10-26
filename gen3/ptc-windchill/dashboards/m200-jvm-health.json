@@ -1,0 +1,164 @@
+{
+  "name": "M200 - JVM Health",
+  "type": "dashboard",
+  "content": {
+    "version": 21,
+    "variables": [],
+    "tiles": {
+      "hdr": {
+        "type": "markdown",
+        "content": "## PTC Windchill — JVM Health\nThree-column view: Method Server | Server Manager | Directory Server"
+      },
+      "hdr-ms": {
+        "type": "markdown",
+        "content": "### Method Server (tag: `MethodServer`)"
+      },
+      "hdr-sm": {
+        "type": "markdown",
+        "content": "### Server Manager (tag: `ServerManager`)"
+      },
+      "hdr-ds": {
+        "type": "markdown",
+        "content": "### Directory Server (tag: `DirectoryServer`)"
+      },
+      "ms-cpu": {
+        "type": "data",
+        "title": "MS — CPU Time",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries sum(`builtin:tech.jvm.threads.totalCpuTime`), by:{dt.entity.process_group_instance}\n| filter in(dt.entity.process_group_instance, entitySelector(\"type(PROCESS_GROUP_INSTANCE),tag(\\\"MethodServer\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "sm-cpu": {
+        "type": "data",
+        "title": "SM — CPU Time",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries sum(`builtin:tech.jvm.threads.totalCpuTime`), by:{dt.entity.process_group_instance}\n| filter in(dt.entity.process_group_instance, entitySelector(\"type(PROCESS_GROUP_INSTANCE),tag(\\\"ServerManager\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "ds-cpu": {
+        "type": "data",
+        "title": "DS — CPU Time",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries sum(`builtin:tech.jvm.threads.totalCpuTime`), by:{dt.entity.process_group_instance}\n| filter in(dt.entity.process_group_instance, entitySelector(\"type(PROCESS_GROUP_INSTANCE),tag(\\\"DirectoryServer\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "ms-mem": {
+        "type": "data",
+        "title": "MS — Runtime Memory",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:tech.jvm.memory.runtime.total`), by:{dt.entity.process_group_instance}\n| filter in(dt.entity.process_group_instance, entitySelector(\"type(PROCESS_GROUP_INSTANCE),tag(\\\"MethodServer\\\")\"))",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`builtin:tech.jvm.memory.runtime.free`), by:{dt.entity.process_group_instance}\n| filter in(dt.entity.process_group_instance, entitySelector(\"type(PROCESS_GROUP_INSTANCE),tag(\\\"MethodServer\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "sm-mem": {
+        "type": "data",
+        "title": "SM — Runtime Memory",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:tech.jvm.memory.runtime.total`), by:{dt.entity.process_group_instance}\n| filter in(dt.entity.process_group_instance, entitySelector(\"type(PROCESS_GROUP_INSTANCE),tag(\\\"ServerManager\\\")\"))",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`builtin:tech.jvm.memory.runtime.free`), by:{dt.entity.process_group_instance}\n| filter in(dt.entity.process_group_instance, entitySelector(\"type(PROCESS_GROUP_INSTANCE),tag(\\\"ServerManager\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "ds-mem": {
+        "type": "data",
+        "title": "DS — Runtime Memory",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`builtin:tech.jvm.memory.runtime.total`), by:{dt.entity.process_group_instance}\n| filter in(dt.entity.process_group_instance, entitySelector(\"type(PROCESS_GROUP_INSTANCE),tag(\\\"DirectoryServer\\\")\"))",
+            "enabled": true
+          },
+          {
+            "id": "B",
+            "expression": "timeseries avg(`builtin:tech.jvm.memory.runtime.free`), by:{dt.entity.process_group_instance}\n| filter in(dt.entity.process_group_instance, entitySelector(\"type(PROCESS_GROUP_INSTANCE),tag(\\\"DirectoryServer\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "ms-gc": {
+        "type": "data",
+        "title": "MS — GC Time",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries sum(`builtin:tech.jvm.memory.gc.collectionTime`), by:{dt.entity.process_group_instance}\n| filter in(dt.entity.process_group_instance, entitySelector(\"type(PROCESS_GROUP_INSTANCE),tag(\\\"MethodServer\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "sm-gc": {
+        "type": "data",
+        "title": "SM — GC Time",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries sum(`builtin:tech.jvm.memory.gc.collectionTime`), by:{dt.entity.process_group_instance}\n| filter in(dt.entity.process_group_instance, entitySelector(\"type(PROCESS_GROUP_INSTANCE),tag(\\\"ServerManager\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      },
+      "ds-gc": {
+        "type": "data",
+        "title": "DS — GC Time",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries sum(`builtin:tech.jvm.memory.gc.collectionTime`), by:{dt.entity.process_group_instance}\n| filter in(dt.entity.process_group_instance, entitySelector(\"type(PROCESS_GROUP_INSTANCE),tag(\\\"DirectoryServer\\\")\"))",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      }
+    },
+    "layouts": {
+      "hdr":    {"x": 0,  "y": 0,  "w": 24, "h": 2},
+      "hdr-ms": {"x": 0,  "y": 2,  "w": 8,  "h": 2},
+      "hdr-sm": {"x": 8,  "y": 2,  "w": 8,  "h": 2},
+      "hdr-ds": {"x": 16, "y": 2,  "w": 8,  "h": 2},
+      "ms-cpu": {"x": 0,  "y": 4,  "w": 8,  "h": 8},
+      "sm-cpu": {"x": 8,  "y": 4,  "w": 8,  "h": 8},
+      "ds-cpu": {"x": 16, "y": 4,  "w": 8,  "h": 8},
+      "ms-mem": {"x": 0,  "y": 12, "w": 8,  "h": 8},
+      "sm-mem": {"x": 8,  "y": 12, "w": 8,  "h": 8},
+      "ds-mem": {"x": 16, "y": 12, "w": 8,  "h": 8},
+      "ms-gc":  {"x": 0,  "y": 20, "w": 8,  "h": 8},
+      "sm-gc":  {"x": 8,  "y": 20, "w": 8,  "h": 8},
+      "ds-gc":  {"x": 16, "y": 20, "w": 8,  "h": 8}
+    }
+  }
+}

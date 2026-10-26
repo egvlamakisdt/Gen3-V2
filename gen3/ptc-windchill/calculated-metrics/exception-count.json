@@ -1,0 +1,40 @@
+{
+  "tsmMetricKey": "calc:service.ptc.exception_count",
+  "name": "PTC Exception Count",
+  "enabled": true,
+  "metricDefinition": {
+    "metric": "EXCEPTION_COUNT",
+    "requestAttribute": null
+  },
+  "unit": "COUNT",
+  "unitDisplayName": "",
+  "dimensionDefinition": {
+    "name": "Exception Class",
+    "dimension": "{Exception:Class}",
+    "placeholders": [
+      {
+        "name": "Exception",
+        "attribute": "EXCEPTION_CLASS",
+        "kind": "DETECTED_EXCEPTION_ATTRIBUTE",
+        "delimiter": null,
+        "useFromChildCalls": false
+      }
+    ],
+    "topX": 100,
+    "topXDirection": "DESCENDING",
+    "topXAggregation": "SUM"
+  },
+  "conditions": [
+    {
+      "attribute": "EXCEPTION_CLASS",
+      "comparisonInfo": {
+        "type": "STRING",
+        "operator": "EXISTS",
+        "value": null,
+        "negate": false,
+        "caseSensitive": false
+      }
+    }
+  ],
+  "managementZones": ["PTC"]
+}

@@ -1,0 +1,57 @@
+name: custom:ptc.windchill.queues
+version: "1.0.0"
+minDynatraceVersion: "1.257"
+author:
+  name: "PTC Windchill Monitoring"
+
+# NOTE: The JMX key property for queue name uses uppercase "Name" (not "name").
+# This is intentional and must be preserved exactly for correct dimension splitting.
+
+metrics:
+  - key: "ptc.windchill.queues.max_exec_time_seconds"
+    metadata:
+      displayName: "Queue Max Entry Execution Time (s)"
+      unit: Second
+      description: "Maximum execution time in seconds for entries in a Windchill queue"
+      dimensions:
+        - key: queue_name
+          displayName: "Queue Name"
+  - key: "ptc.windchill.queues.total_entries"
+    metadata:
+      displayName: "Queue Total Entries"
+      unit: Count
+      description: "Total number of entries processed by a Windchill queue"
+      dimensions:
+        - key: queue_name
+          displayName: "Queue Name"
+  - key: "ptc.windchill.queues.waiting_ready_entries"
+    metadata:
+      displayName: "Queue Waiting/Ready Entries"
+      unit: Count
+      description: "Number of entries currently waiting or ready in a Windchill queue"
+      dimensions:
+        - key: queue_name
+          displayName: "Queue Name"
+
+jmxRemote:
+  - group: "PTC Queues"
+    subgroups:
+      - subgroup: "Queues"
+        query: "com.ptc:Name=*,wt.monitorType=Queues,wt.subsystem=Monitors,*"
+        dimensions:
+          - key: queue_name
+            value:
+              keyProperty: "Name"
+        metrics:
+          - key: "ptc.windchill.queues.max_exec_time_seconds"
+            value:
+              attribute: "MaxEntryExecTimeSeconds"
+            type: gauge
+          - key: "ptc.windchill.queues.total_entries"
+            value:
+              attribute: "TotalEntries"
+            type: gauge
+          - key: "ptc.windchill.queues.waiting_ready_entries"
+            value:
+              attribute: "WaitingReadyEntries"
+            type: gauge

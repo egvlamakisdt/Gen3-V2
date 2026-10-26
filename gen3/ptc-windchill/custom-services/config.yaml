@@ -1,0 +1,117 @@
+configs:
+  - id: custom-svc-checkin
+    config:
+      name: "Checkin Operation"
+      template: checkin-operation.json
+    type:
+      settings:
+        schema: builtin:service.customservices
+        scope: environment
+
+  - id: custom-svc-checkout
+    config:
+      name: "Checkout Operation"
+      template: checkout-operation.json
+    type:
+      settings:
+        schema: builtin:service.customservices
+        scope: environment
+
+  - id: custom-svc-create
+    config:
+      name: "Create Operation"
+      template: create-operation.json
+    type:
+      settings:
+        schema: builtin:service.customservices
+        scope: environment
+
+  - id: custom-svc-create-document
+    config:
+      name: "Create Document Operation"
+      template: create-document-operation.json
+    type:
+      settings:
+        schema: builtin:service.customservices
+        scope: environment
+
+  - id: custom-svc-copy
+    config:
+      name: "Copy Operation"
+      template: copy-operation.json
+    type:
+      settings:
+        schema: builtin:service.customservices
+        scope: environment
+
+  - id: custom-svc-delete
+    config:
+      name: "Delete Operation"
+      template: delete-operation.json
+    type:
+      settings:
+        schema: builtin:service.customservices
+        scope: environment
+
+  - id: custom-svc-edit
+    config:
+      name: "Edit Operation"
+      template: edit-operation.json
+    type:
+      settings:
+        schema: builtin:service.customservices
+        scope: environment
+
+  - id: custom-svc-folder-navigation
+    config:
+      name: "Folder Navigation"
+      template: folder-navigation.json
+    type:
+      settings:
+        schema: builtin:service.customservices
+        scope: environment
+
+  - id: custom-svc-move
+    config:
+      name: "Move Operation"
+      template: move-operation.json
+    type:
+      settings:
+        schema: builtin:service.customservices
+        scope: environment
+
+  - id: custom-svc-paste
+    config:
+      name: "Paste Operation"
+      template: paste-operation.json
+    type:
+      settings:
+        schema: builtin:service.customservices
+        scope: environment
+
+  - id: custom-svc-rename
+    config:
+      name: "Rename Operation"
+      template: rename-operation.json
+    type:
+      settings:
+        schema: builtin:service.customservices
+        scope: environment
+
+  - id: custom-svc-set-preference
+    config:
+      name: "Set Preference Operation"
+      template: set-preference-operation.json
+    type:
+      settings:
+        schema: builtin:service.customservices
+        scope: environment
+
+  - id: custom-svc-wc-login-bean
+    config:
+      name: "WCLoginBean"
+      template: wc-login-bean.json
+    type:
+      settings:
+        schema: builtin:service.customservices
+        scope: environment

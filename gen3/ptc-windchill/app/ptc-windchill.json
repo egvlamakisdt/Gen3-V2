@@ -1,0 +1,88 @@
+{
+  "name": "PTC Windchill",
+  "type": "AUTO_INJECTED",
+  "realUserMonitoringEnabled": true,
+  "costControlUserSessionPercentage": 100,
+  "loadActionKeyPerformanceMetric": "VISUALLY_COMPLETE",
+  "xhrActionKeyPerformanceMetric": "VISUALLY_COMPLETE",
+  "sessionReplayConfig": {
+    "enabled": false,
+    "costControlPercentage": 100
+  },
+  "loadActionApdexSettings": {
+    "toleratedThreshold": 3000,
+    "frustratingThreshold": 12000
+  },
+  "xhrActionApdexSettings": {
+    "toleratedThreshold": 3000,
+    "frustratingThreshold": 12000
+  },
+  "customActionApdexSettings": {
+    "toleratedThreshold": 3000,
+    "frustratingThreshold": 12000
+  },
+  "userActionNamingSettings": {
+    "placeholders": [
+      {
+        "name": "TrailingURL",
+        "input": "PAGE_URL",
+        "processingSteps": [
+          {
+            "type": "SUBSTRING",
+            "patternBeforeReplacedString": "/Windchill/app/#ptc1",
+            "patternAfterReplacedString": "?"
+          }
+        ]
+      }
+    ],
+    "loadActionNamingRules": [
+      {
+        "template": "{TrailingURL}",
+        "conditions": [
+          {
+            "operand1": "{Page URL}",
+            "operand2": "/Windchill/app/#ptc1",
+            "operator": "CONTAINS"
+          }
+        ]
+      }
+    ],
+    "xhrActionNamingRules": [
+      {
+        "template": "{TrailingURL}",
+        "conditions": [
+          {
+            "operand1": "{Page URL}",
+            "operand2": "/Windchill/app/#ptc1",
+            "operator": "CONTAINS"
+          }
+        ]
+      }
+    ],
+    "customActionNamingRules": []
+  },
+  "metaDataCaptureSettings": [
+    {
+      "type": "JAVA_SCRIPT_VARIABLE",
+      "capturingName": "PTC.navigation.GLOBAL_USER",
+      "name": "PTC.navigation.GLOBAL_USER",
+      "useFromChildCalls": false,
+      "id": 1,
+      "publicMetadata": false
+    },
+    {
+      "type": "CSS_SELECTOR",
+      "capturingName": "#infoPageIdentityObjectIdentifier",
+      "name": "infoPageIdentityObjectIdentifier",
+      "useFromChildCalls": false,
+      "id": 2,
+      "publicMetadata": false
+    }
+  ],
+  "userTagSettings": {
+    "tagComponentId": 1,
+    "useFirstValueOnly": false,
+    "userTagType": "CUSTOM_DEFINED",
+    "cleanupRule": null
+  }
+}

@@ -1,0 +1,33 @@
+# Synthetic monitors require customer-specific configuration:
+#   1. Replace WINDCHILL_BASE_URL with your Windchill base URL (e.g. https://windchill.example.com)
+#   2. Replace LOCATION_ENTITY_ID with a valid Dynatrace synthetic location entity ID
+#      from your tenant (fetch dt.entity.synthetic_location | fields id, entity.name)
+#   3. The monitors are deployed as disabled (enabled: false) for safety.
+#      Enable them in the Dynatrace UI after verifying URL and validation logic.
+configs:
+  - id: synthetic-server-status
+    config:
+      name: "Windchill Server Status"
+      template: server-status.json
+    type:
+      settings:
+        schema: builtin:synthetic.browser.monitor
+        scope: environment
+
+  - id: synthetic-queue-check
+    config:
+      name: "Windchill Queue Check"
+      template: queue-check.json
+    type:
+      settings:
+        schema: builtin:synthetic.browser.monitor
+        scope: environment
+
+  - id: synthetic-file-server-download
+    config:
+      name: "Windchill File Server Download Check"
+      template: file-server-download.json
+    type:
+      settings:
+        schema: builtin:synthetic.browser.monitor
+        scope: environment

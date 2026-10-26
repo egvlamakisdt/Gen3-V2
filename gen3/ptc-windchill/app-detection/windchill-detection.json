@@ -1,0 +1,8 @@
+{
+  "filterConfig": {
+    "pattern": "Windchill",
+    "applicationMatchTarget": "URL",
+    "applicationMatchType": "CONTAINS"
+  },
+  "isDefault": false
+}

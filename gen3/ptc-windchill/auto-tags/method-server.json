@@ -1,0 +1,31 @@
+{
+  "name": "MethodServer",
+  "description": "Tags the PTC Windchill Method Server process group",
+  "rules": [
+    {
+      "type": "ME",
+      "enabled": true,
+      "valueFormat": null,
+      "propagationTypes": [],
+      "conditions": [
+        {
+          "key": {
+            "attribute": "PROCESS_PREDEFINED_METADATA",
+            "dynamicKey": {
+              "key": "JAVA_MAIN_CLASS",
+              "source": "PROCESS_PREDEFINED_METADATA_KEY"
+            },
+            "type": "PROCESS_PREDEFINED_METADATA_KEY"
+          },
+          "comparisonInfo": {
+            "type": "STRING",
+            "operator": "CONTAINS",
+            "value": "MethodServerMain",
+            "negate": false,
+            "caseSensitive": true
+          }
+        }
+      ]
+    }
+  ]
+}

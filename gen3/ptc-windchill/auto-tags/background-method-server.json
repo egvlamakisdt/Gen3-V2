@@ -1,0 +1,27 @@
+{
+  "name": "BackgroundMethodServer",
+  "description": "Tags the PTC Windchill Background Method Server process group",
+  "rules": [
+    {
+      "type": "ME",
+      "enabled": true,
+      "valueFormat": null,
+      "propagationTypes": [],
+      "conditions": [
+        {
+          "key": {
+            "attribute": "PROCESS_COMMAND_LINE_ARGS",
+            "type": "STATIC"
+          },
+          "comparisonInfo": {
+            "type": "STRING",
+            "operator": "CONTAINS",
+            "value": "Dwt.manager.serviceName=BackgroundMethodServer",
+            "negate": false,
+            "caseSensitive": true
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "tsmMetricKey": "calc:service.ptc.action_name_by_user",
+  "name": "PTC Action Name By User",
+  "enabled": true,
+  "metricDefinition": {
+    "metric": "RESPONSE_TIME",
+    "requestAttribute": null
+  },
+  "unit": "MICRO_SECOND",
+  "unitDisplayName": "",
+  "dimensionDefinition": {
+    "name": "Action Name by User",
+    "dimension": "{RequestAttribute:ActionName} By {RequestAttribute:GetRemoteUser}",
+    "placeholders": [
+      {
+        "name": "ActionName",
+        "attribute": "REQUEST_ATTRIBUTE",
+        "kind": "REQUEST_ATTRIBUTE",
+        "requestAttribute": "ActionName",
+        "useFromChildCalls": false
+      },
+      {
+        "name": "GetRemoteUser",
+        "attribute": "REQUEST_ATTRIBUTE",
+        "kind": "REQUEST_ATTRIBUTE",
+        "requestAttribute": "GetRemoteUser",
+        "useFromChildCalls": false
+      }
+    ],
+    "topX": 50,
+    "topXDirection": "DESCENDING",
+    "topXAggregation": "AVERAGE"
+  },
+  "conditions": [
+    {
+      "attribute": "REQUEST_ATTRIBUTE",
+      "comparisonInfo": {
+        "type": "REQUEST_ATTRIBUTE",
+        "operator": "EXISTS",
+        "value": null,
+        "negate": false,
+        "requestAttribute": "GetRemoteUser"
+      }
+    },
+    {
+      "attribute": "REQUEST_ATTRIBUTE",
+      "comparisonInfo": {
+        "type": "REQUEST_ATTRIBUTE",
+        "operator": "EXISTS",
+        "value": null,
+        "negate": false,
+        "requestAttribute": "ActionName"
+      }
+    }
+  ],
+  "managementZones": ["PTC"]
+}

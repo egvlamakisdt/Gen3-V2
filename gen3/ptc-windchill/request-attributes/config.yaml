@@ -1,0 +1,18 @@
+configs:
+  - id: request-attribute-action-name
+    config:
+      name: "ActionName"
+      template: action-name.json
+    type:
+      settings:
+        schema: builtin:request-attribute
+        scope: environment
+
+  - id: request-attribute-get-remote-user
+    config:
+      name: "GetRemoteUser"
+      template: get-remote-user.json
+    type:
+      settings:
+        schema: builtin:request-attribute
+        scope: environment

@@ -1,0 +1,9 @@
+configs:
+  - id: ptc-windchill-app
+    config:
+      name: "PTC Windchill"
+      template: ptc-windchill.json
+    type:
+      settings:
+        schema: builtin:rum.web.app
+        scope: environment

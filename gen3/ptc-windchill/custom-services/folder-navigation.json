@@ -1,0 +1,26 @@
+{
+  "name": "Folder Navigation",
+  "type": "JAVA",
+  "enabled": true,
+  "rules": [
+    {
+      "revisionNumber": 1,
+      "enabled": true,
+      "classes": [
+        {
+          "name": "com.ptc.avi.windchill.FolderTableBuilder",
+          "match": "ENDS_WITH",
+          "methods": [
+            {
+              "name": "buildComponentConfig",
+              "argumentTypes": ["com.ptc.avi.ComponentParams"],
+              "returnType": null,
+              "visibility": ["PUBLIC"],
+              "modifiers": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

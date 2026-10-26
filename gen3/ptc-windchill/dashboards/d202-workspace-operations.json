@@ -1,0 +1,43 @@
+{
+  "name": "D202 - Workspace Operations",
+  "type": "dashboard",
+  "content": {
+    "version": 21,
+    "variables": [],
+    "tiles": {
+      "hdr": {
+        "type": "markdown",
+        "content": "## Workspace Operations by User\nTop operations ranked by average response time per user. Uses `calc:service.ptc.action_name_by_user`."
+      },
+      "action-by-user": {
+        "type": "data",
+        "title": "Action Name by User — Response Time",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`calc:service.ptc.action_name_by_user`), by:{Dimension}\n| fieldsAdd lastAvg = rollup(avg, value)\n| sort lastAvg desc\n| limit 50",
+            "enabled": true
+          }
+        ],
+        "visualization": "table"
+      },
+      "action-trend": {
+        "type": "data",
+        "title": "Response Time Trend — Top 10 Operations",
+        "queries": [
+          {
+            "id": "A",
+            "expression": "timeseries avg(`calc:service.ptc.action_name_by_user`), by:{Dimension}\n| sort max(rollup(avg, value)) desc\n| limit 10",
+            "enabled": true
+          }
+        ],
+        "visualization": "lineChart"
+      }
+    },
+    "layouts": {
+      "hdr":          {"x": 0,  "y": 0,  "w": 24, "h": 2},
+      "action-by-user":{"x": 0, "y": 2,  "w": 12, "h": 16},
+      "action-trend": {"x": 12, "y": 2,  "w": 12, "h": 16}
+    }
+  }
+}

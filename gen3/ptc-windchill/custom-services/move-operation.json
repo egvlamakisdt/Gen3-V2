@@ -1,0 +1,26 @@
+{
+  "name": "Move Operation",
+  "type": "JAVA",
+  "enabled": true,
+  "rules": [
+    {
+      "revisionNumber": 1,
+      "enabled": true,
+      "classes": [
+        {
+          "name": "wt.folder.StandardContainerMoveService",
+          "match": "ENDS_WITH",
+          "methods": [
+            {
+              "name": "moveImpl",
+              "argumentTypes": ["wt.util.WTValuedMap", "boolean", "boolean", "java.lang.String"],
+              "returnType": null,
+              "visibility": ["PUBLIC", "PRIVATE", "PROTECTED", "PACKAGE_PROTECTED"],
+              "modifiers": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

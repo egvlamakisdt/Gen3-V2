@@ -1,0 +1,52 @@
+{
+  "name": "Checkin Operation",
+  "type": "JAVA",
+  "enabled": true,
+  "rules": [
+    {
+      "revisionNumber": 1,
+      "enabled": true,
+      "classes": [
+        {
+          "name": "com.ptc.windchill.uwgm.cadx.EPMStandardWorkspaceManager",
+          "match": "ENDS_WITH",
+          "methods": [
+            {
+              "name": "checkin",
+              "argumentTypes": ["java.lang.String", "java.util.Collection"],
+              "returnType": null,
+              "visibility": ["PUBLIC"],
+              "modifiers": []
+            }
+          ]
+        },
+        {
+          "name": "com.ptc.windchill.enterprise.wip.CheckinObjectFormProcessor",
+          "match": "ENDS_WITH",
+          "methods": [
+            {
+              "name": "doOperation",
+              "argumentTypes": [],
+              "returnType": null,
+              "visibility": ["PUBLIC"],
+              "modifiers": []
+            }
+          ]
+        },
+        {
+          "name": "com.ptc.windchill.wip.StandardWorkInProgressService",
+          "match": "ENDS_WITH",
+          "methods": [
+            {
+              "name": "checkin",
+              "argumentTypes": [],
+              "returnType": null,
+              "visibility": ["PUBLIC"],
+              "modifiers": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
